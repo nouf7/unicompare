@@ -1,0 +1,209 @@
+/* Reset some basic elements */
+body, h1, p, a, button, input, textarea {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    box-sizing: border-box;
+}
+
+/* Apply a background color to the body */
+body {
+    background-color: #fff;
+    color: #333;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/* Container for all content to center it on the page */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Style for the navigation menu */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover and active styles for navigation links */
+nav ul li a:hover,
+nav ul li a.active {
+    background-color: #a7d7c5; /* Pastel green color for active/hover */
+    color: #fff;
+    border-radius: 5px;
+}
+
+/* Main content styling */
+main h1 {
+    font-size: 2.5em; /* Increased font size for main headings */
+    font-weight: bold; /* Make headings bold */
+    margin-bottom: 20px; /* Spacing below headings */
+}
+
+main p {
+    font-size: 1.2em; /* Slightly larger paragraph text */
+}
+
+/* Style the form elements */
+form {
+    margin-top: 20px;
+}
+
+form label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Button styling */
+button.btn-main,
+a.btn-main {
+    display: block;
+    width: auto;
+    padding: 15px 30px;
+    background-color: #a7d7c5; /* Pastel green color */
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px; /* Space above the button */
+}
+
+button.btn-main:hover,
+a.btn-main:hover {
+    background-color: #95c0a9;
+}
+
+/* Style adjustments for image container */
+.image-container {
+    text-align: center;
+    margin-top: 30px; /* Space from the header */
+}
+
+.image-container img {
+    width: 120%; /* Change this percentage to increase or decrease relative width */
+    max-width: 880px; /* Adjust this pixel value to set the maximum width */
+    height: auto; /* Keeps the aspect ratio of the image */
+    border-radius: 8px;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul li {
+        margin-bottom: 10px;
+    }
+
+    .image-container img {
+        width: 100%; /* Adjust width for smaller screens */
+        max-width: none; /* Remove max-width restriction */
+    }
+
+    button.btn-main,
+    a.btn-main {
+        width: auto;
+    }
+
+    main h1,
+    main p {
+        text-align: center; /* Center text for smaller screens */
+    }
+
+}
+/* Add these styles to your existing style.css file */
+
+/* Styles for filters */
+.filters {
+    margin-bottom: 20px;
+}
+
+.filters label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.filters select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.filters button {
+    padding: 10px 20px;
+    background-color: #a7d7c5;
+    color: #333;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.filters button:hover {
+    background-color: #95c0a9;
+}
+
+/* Styles for universities */
+.universities {
+    margin-top: 20px;
+}
+
+.university {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.university h2 {
+    margin-bottom: 10px;
+}
+
+.university p {
+    margin-bottom: 5px;
+}
+

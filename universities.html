@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Choose Filters - UniCompare</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="contact-us.html">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <h1>Filter Universities</h1>
+            <div class="filters">
+                <label for="country-filter">Filter by Country:</label>
+                <select id="country-filter" multiple>
+                    <!-- Options will be populated dynamically using JavaScript -->
+                </select>
+                <button onclick="applyFilters()">Apply Filter</button>
+            </div>
+            <div class="universities">
+                <!-- Universities will be displayed here dynamically using JavaScript -->
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
