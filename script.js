@@ -51,6 +51,7 @@ async function fetchUniversities() {
         // Sort universities using the custom sorting function
         universities.sort(customSort);
 
+       
         console.log('Sorted Universities:', universities); // Log the sorted universities array
 
         return universities;
@@ -60,10 +61,36 @@ async function fetchUniversities() {
     }
 }
 
+// Function to filter universities based on selected criteria
+// Function to filter universities based on selected criteria
+async function applyFilters() {
+    const selectedAge = document.getElementById('age-filter').value;
+    const selectedCountry = document.getElementById('country-filter').value;
+    const selectedRes = document.getElementById('res-filter').value;
+    const selectedSize = document.getElementById('size-filter').value;
+    const selectedFocus = document.getElementById('focus-filter').value;
+
+    const universities = await fetchUniversities();
+
+    const filteredUniversities = universities.filter(university => {
+        const ageCheck = selectedAge === 'All' || String(university.AGE) === selectedAge;
+        const countryCheck = selectedCountry === 'All' || university.Country === selectedCountry;
+        const resCheck = selectedRes === 'All' || university.RES === selectedRes;
+        const sizeCheck = selectedSize === 'All' || university.SIZE === selectedSize;
+        const focusCheck = selectedFocus === 'All' || university.FOCUS === selectedFocus;
+        
+        return ageCheck && countryCheck && resCheck && sizeCheck && focusCheck;
+    });
+
+    console.log('Filtered Universities:', filteredUniversities); // Log the filtered universities
+    displayUniversities(filteredUniversities);
+}
+
+
 // Function to populate country filter options
 async function populateCountryFilterOptions() {
     const universities = await fetchUniversities();
-    const countries = [...new Set(universities.map(university => university.Country))];
+    const countries = ['All', ...new Set(universities.map(university => university.Country))];
 
     const countryFilter = document.getElementById('country-filter');
 
@@ -73,17 +100,6 @@ async function populateCountryFilterOptions() {
         option.textContent = country;
         countryFilter.appendChild(option);
     });
-}
-
-// Function to filter universities by selected countries
-async function applyFilters() {
-    const selectedCountries = Array.from(document.getElementById('country-filter').selectedOptions).map(option => option.value);
-    const universities = await fetchUniversities();
-
-    const filteredUniversities = universities.filter(university => selectedCountries.includes(university.Country));
-
-    console.log('Filtered Universities:', filteredUniversities); // Log the filtered universities
-    displayUniversities(filteredUniversities);
 }
 
 // Function to display universities
@@ -96,15 +112,70 @@ function displayUniversities(universities) {
         universityElement.classList.add('university');
         universityElement.innerHTML = `
             <h2>${university['Institution Name']}</h2>
-            <p><strong>Rank:</strong> ${university['2024 RANK']}</p>
+            <p><strong>Rank 2023:</strong> ${university['2023 RANK']}</p>
+            <p><strong>Rank 2024:</strong> ${university['2024 RANK']}</p>
+            <p><strong>Age:</strong> ${university.AGE}</p>
+            <p><strong>Academic Reputation Score:</strong> ${university['Academic Reputation Score']}</p>
+            <p><strong>Citations per Faculty Score:</strong> ${university['Citations per Faculty Score']}</p>
             <p><strong>Country:</strong> ${university.Country}</p>
+            <p><strong>Employer Reputation Score:</strong> ${university['Employer Reputation Score']}</p>
+            <p><strong>FOCUS:</strong> ${university.FOCUS}</p>
+            <p><strong>Faculty Student Score:</strong> ${university['Faculty Student Score']}</p>
+            <p><strong>International Faculty Score:</strong> ${university['International Faculty Score']}</p>
+            <p><strong>International Research Network Score:</strong> ${university['International Research Network Score']}</p>
+            <p><strong>International Students Score:</strong> ${university['International Students Score']}</p>
+            <p><strong>Overall Score:</strong> ${university['Overall Score']}</p>
+            <p><strong>RES:</strong> ${university.RES}</p>
+            <p><strong>SIZE:</strong> ${university.SIZE}</p>
+            <p><strong>Sustainability Score:</strong> ${university['Sustainability Score']}</p>
             <hr>
         `;
         universitiesContainer.appendChild(universityElement);
     });
 }
 
+
 // Call the function to populate country filter options when the page loads
 window.onload = async function() {
     await populateCountryFilterOptions();
 };
+// Function to toggle more details
+function toggleMoreDetails(universityElement) {
+    const detailsElement = universityElement.querySelector('.university-details');
+    detailsElement.style.display = detailsElement.style.display === 'none' ? 'block' : 'none';
+}
+
+function displayUniversities(universities) {
+    const universitiesContainer = document.querySelector('.universities');
+    universitiesContainer.innerHTML = '';
+
+    universities.forEach(university => {
+        const universityElement = document.createElement('div');
+        universityElement.classList.add('university');
+        universityElement.innerHTML = `
+            <h2>${university['Institution Name']}</h2>
+            <p><strong>Rank:</strong> ${university['2024 RANK']}</p>
+            <p><strong>Country:</strong> ${university.Country}</p>
+            <p class="show-more-details" onclick="toggleMoreDetails(this.parentElement)">Show more details</p>
+            <div class="university-details">
+                <p><strong>Rank 2023:</strong> ${university['2023 RANK']}</p>
+                <p><strong>Age:</strong> ${university.AGE}</p>
+                <p><strong>Academic Reputation Score:</strong> ${university['Academic Reputation Score']}</p>
+                <p><strong>Citations per Faculty Score:</strong> ${university['Citations per Faculty Score']}</p>
+                <p><strong>Employer Reputation Score:</strong> ${university['Employer Reputation Score']}</p>
+                <p><strong>FOCUS:</strong> ${university.FOCUS}</p>
+                <p><strong>Faculty Student Score:</strong> ${university['Faculty Student Score']}</p>
+                <p><strong>International Faculty Score:</strong> ${university['International Faculty Score']}</p>
+                <p><strong>International Research Network Score:</strong> ${university['International Research Network Score']}</p>
+                <p><strong>International Students Score:</strong> ${university['International Students Score']}</p>
+                <p><strong>Overall Score:</strong> ${university['Overall Score']}</p>
+                <p><strong>RES:</strong> ${university.RES}</p>
+                <p><strong>SIZE:</strong> ${university.SIZE}</p>
+                <p><strong>Sustainability Score:</strong> ${university['Sustainability Score']}</p>
+            </div>
+            <hr>
+        `;
+        universitiesContainer.appendChild(universityElement);
+    });
+}
+

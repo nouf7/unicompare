@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Add this script tag to link your JavaScript file -->
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Choose Filters - UniCompare</title>
+    
+    <title>Welcome to UniCompare 2024</title>
 </head>
 <body>
     <div class="container">
@@ -16,19 +19,58 @@
                     <li><a href="contact-us.html">Contact</a></li>
                 </ul>
             </nav>
+            <div class="search">
+                <input type="text" placeholder="Search">
+            </div>
         </header>
         <main>
-            <h1>Filter Universities</h1>
+            <div class="content">
+                <h1><strong>UniCompare</strong> 2024</h1>
+                <p>Discover and compare university rankings with ease and find your perfect academic fit.</p>
+           
+            <!-- universities.html -->
+
             <div class="filters">
-                <label for="country-filter">Filter by Country:</label>
-                <select id="country-filter" multiple>
-                    <!-- Options will be populated dynamically using JavaScript -->
-                </select>
-                <button onclick="applyFilters()">Apply Filter</button>
+                <!-- Filters box -->
+                <div class="filter-box">
+                    <h3>Filters</h3>
+                    <label for="age-filter">Age:</label>
+                    <select id="age-filter">
+                        <option value="All">All</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <label for="country-filter">Country:</label>
+                    <select id="country-filter"></select>
+                    <label for="res-filter">RES:</label>
+                    <select id="res-filter">
+                        <option value="All">All</option>
+                        <option value="VH">VH</option>
+                        <option value="HI">HI</option>
+                        <option value="MD">MD</option>
+                    </select>
+                    <label for="size-filter">SIZE:</label>
+                    <select id="size-filter">
+                        <option value="All">All</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                    </select>
+                    <label for="focus-filter">FOCUS:</label>
+                    <select id="focus-filter">
+                        <option value="All">All</option>
+                        <option value="FC">FC</option>
+                        <option value="CO">CO</option>
+                    </select>
+                    <button onclick="applyFilters()">Apply Filters</button>
+                </div>
             </div>
-            <div class="universities">
-                <!-- Universities will be displayed here dynamically using JavaScript -->
-            </div>
+            <div class="universities"></div>
+        </div>
         </main>
     </div>
     <script src="script.js"></script>

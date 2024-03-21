@@ -189,7 +189,7 @@ a.btn-main:hover {
 
 /* Styles for universities */
 .universities {
-    margin-top: 20px;
+    margin-top: 14px;
 }
 
 .university {
@@ -206,4 +206,30 @@ a.btn-main:hover {
 .university p {
     margin-bottom: 5px;
 }
+/* style.css */
+
+/* Position filters box on the left */
+.filters {
+    margin-bottom: 20px; 
+}
+
+/* Style for filter box */
+.filter-box {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* Style for "show more details" link */
+.show-more-details {
+    color: blue; /* Change color as desired */
+    cursor: pointer;
+}
+
+/* Hide details by default */
+.university-details {
+    display: none;
+}
+
 
