@@ -123,7 +123,7 @@ document.getElementById('search-form').addEventListener('submit', async function
     displayUniversity(universityInfo);
 });
 
-// Function to fetch university information based on the name
+// Function to fetch university information based on the partial name
 async function fetchUniversityInfo(universityName) {
     try {
         // Fetch data from both databases concurrently
@@ -140,48 +140,49 @@ async function fetchUniversityInfo(universityName) {
         const universities2 = Object.values(data2);
         const universities = [...universities1, ...universities2];
 
-        // Find the university by name
-        const foundUniversity = universities.find(university => university['Institution Name'].toLowerCase() === universityName.toLowerCase());
+        // Find universities by partial name
+        const foundUniversities = universities.filter(university =>
+            university['Institution Name'].toLowerCase().includes(universityName.toLowerCase())
+        );
 
-        return foundUniversity || null; // Return the found university or null if not found
+        return foundUniversities.length > 0 ? foundUniversities : null; // Return found universities or null if not found
     } catch (error) {
         console.error('Error fetching university information:', error);
         throw error;
     }
 }
 
+
 // Function to display a single university
 function displayUniversity(university) {
     const universitiesContainer = document.querySelector('.universities');
     universitiesContainer.innerHTML = '';
 
-    if (university) {
-        const universityElement = document.createElement('div');
-        universityElement.classList.add('university');
-        if (university) {
+    if (university && university.length > 0) {
+        university.forEach(university => {
             const universityElement = document.createElement('div');
             universityElement.classList.add('university');
             universityElement.innerHTML = `
-                <h2>${university['Institution Name']}</h2>
-                <p><strong>Rank:</strong> ${university['2024 RANK']}</p>
-                <p><strong>Country:</strong> ${university.Country}</p>
-                <p><strong>Age:</strong> ${university.AGE}</p>
-                <p><strong>Academic Reputation Score:</strong> ${university['Academic Reputation Score']}</p>
-                <p><strong>Citations per Faculty Score:</strong> ${university['Citations per Faculty Score']}</p>
-                <p><strong>Employer Reputation Score:</strong> ${university['Employer Reputation Score']}</p>
-                <p><strong>Faculty Student Score:</strong> ${university['Faculty Student Score']}</p>
-                <p><strong>International Faculty Score:</strong> ${university['International Faculty Score']}</p>
-                <p><strong>International Research Network Score:</strong> ${university['International Research Network Score']}</p>
-                <p><strong>International Students Score:</strong> ${university['International Students Score']}</p>
-                <p><strong>Overall Score:</strong> ${university['Overall Score']}</p>
-                <p><strong>Sustainability Score:</strong> ${university['Sustainability Score']}</p>
-                <hr>
+            <h2>${university['Institution Name']}</h2>
+            <p><strong>Rank:</strong> ${university['2024 RANK']}</p>
+            <p><strong>Country:</strong> ${university.Country}</p>
+            <p><strong>Overall Score:</strong> ${university['Overall Score']}</p>
+            <p><strong>Age:</strong> ${university.AGE}</p>
+            <p><strong>Academic Reputation Score:</strong> ${university['Academic Reputation Score']}</p>
+            <p><strong>Citations per Faculty Score:</strong> ${university['Citations per Faculty Score']}</p>
+            <p><strong>Employer Reputation Score:</strong> ${university['Employer Reputation Score']}</p>
+            <p><strong>Faculty Student Score:</strong> ${university['Faculty Student Score']}</p>
+            <p><strong>International Faculty Score:</strong> ${university['International Faculty Score']}</p>
+            <p><strong>International Research Network Score:</strong> ${university['International Research Network Score']}</p>
+            <p><strong>International Students Score:</strong> ${university['International Students Score']}</p>
+            <p><strong>Sustainability Score:</strong> ${university['Sustainability Score']}</p>
+            <hr>
             `;
             universitiesContainer.appendChild(universityElement);
-        } else {
-            const noResultMessage = document.createElement('p');
-            noResultMessage.textContent = 'No information found for the specified university.';
-            universitiesContainer.appendChild(noResultMessage);
-        }
+        });
+    } else {
+        const noResultMessage = document.createElement('p');
+        noResultMessage.textContent = 'No information found for the specified university.';
+        universitiesContainer.appendChild(noResultMessage);
     }
 }
