@@ -157,9 +157,14 @@ a.btn-main:hover {
 
 /* Styles for filters */
 .filters {
-    margin-bottom: 20px;
+    position: fixed;
+    top: 80px; /* Adjust the value so that it doesn't overlap your header */
+    left: 0;
+    width: 250px; /* Set the width of the filters box */
+    margin-left: 10px; /* Narrow left margin like e-commerce websites */
+    height: 100%;
+    overflow-y: auto; /* In case the filters exceed the height of the page */
 }
-
 .filters label {
     display: block;
     margin-bottom: 5px;
@@ -189,7 +194,7 @@ a.btn-main:hover {
 
 /* Styles for universities */
 .universities {
-    margin-top: 14px;
+    margin-left: 250px;
 }
 
 .university {
@@ -201,10 +206,10 @@ a.btn-main:hover {
 
 .university h2 {
     margin-bottom: 10px;
+    font-size: 1.5em; 
 }
-
 .university p {
-    margin-bottom: 5px;
+    font-size: 1em;
 }
 /* style.css */
 
@@ -233,3 +238,6 @@ a.btn-main:hover {
 }
 
 
+.content-wrapper {
+    padding-left: 270px; /* Same as the width of the filters + margin */
+}
