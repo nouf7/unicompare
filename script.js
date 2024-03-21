@@ -134,11 +134,6 @@ function displayUniversities(universities) {
     });
 }
 
-
-// Call the function to populate country filter options when the page loads
-window.onload = async function() {
-    await populateCountryFilterOptions();
-};
 // Function to toggle more details
 function toggleMoreDetails(universityElement) {
     const detailsElement = universityElement.querySelector('.university-details');
@@ -178,4 +173,142 @@ function displayUniversities(universities) {
         universitiesContainer.appendChild(universityElement);
     });
 }
+
+// Below functions are used to compare univerities
+async function populateUniversitySelection() {
+    const universities = await fetchUniversities();
+
+    const selectElement = document.getElementById('university-compare');
+    universities.forEach(university => {
+        if (university['Institution Name']) { 
+            const option = document.createElement('option');
+            option.value = university['Institution Name']; 
+            option.textContent = university['Institution Name'];
+            selectElement.appendChild(option);
+        }
+    });
+
+}
+
+let universitiesToCompare = [];
+function addUniversity() {
+    const inputElement = document.getElementById('university-input');
+    // Handle case-insensitive
+    const universityName = inputElement.value.trim().toLowerCase();
+
+    // Check if the input is empty
+    if (universityName === "") {
+        alert("Please enter a university name.");
+        return;
+    }
+    // Limit to three universities
+    if (universitiesToCompare.length >= 3) {
+        alert('You can compare up to 3 universities at a time.');
+        return;
+    }
+    // Check if the university is already added
+    if (!universitiesToCompare.map(name => name.toLowerCase()).includes(universityName)) {
+        universitiesToCompare.push(universityName); 
+        updateSelectedUniversities();
+        inputElement.value = ''; 
+    } else {
+        alert('This university has already been added.');
+    }
+}
+
+function updateSelectedUniversities() {
+    const container = document.querySelector('.selected-universities');
+    container.innerHTML = ''; 
+
+    universitiesToCompare.forEach(name => {
+        const div = document.createElement('div');
+        div.textContent = name;
+        container.appendChild(div);
+    });
+}
+
+function updateSelectedUniversities() {
+    const container = document.querySelector('.selected-universities');
+    container.innerHTML = ''; 
+
+    universitiesToCompare.forEach((name, index) => {
+        const div = document.createElement('div');
+        const deleteBtn = document.createElement('button');
+        
+        div.textContent = name;
+        div.style.marginRight = "10px"; 
+        
+        deleteBtn.textContent = 'Delete';
+        deleteBtn.onclick = function() { removeUniversity(index); }; 
+        deleteBtn.classList.add('delete-btn'); 
+        
+        div.appendChild(deleteBtn);
+        container.appendChild(div);
+    });
+}
+
+function removeUniversity(index) {
+    universitiesToCompare.splice(index, 1); 
+    updateSelectedUniversities(); 
+}
+
+async function compareUniversities() {
+    // Check if there are universities to compare
+    if (universitiesToCompare.length === 0) {
+        alert('Please add at least one university to compare.');
+        return; 
+    }
+
+    const allUniversities = await fetchUniversities();
+    const selectedUniversitiesData = allUniversities.filter(university =>
+        universitiesToCompare.includes(university['Institution Name'].toLowerCase())
+    );
+
+    if (selectedUniversitiesData.length > 0) {
+        displayComparison(selectedUniversitiesData);
+    } else {
+        const comparisonResult = document.querySelector('.comparison-result');
+        comparisonResult.innerHTML = '<p>No matching universities found to compare.</p>';
+    }
+}
+
+function displayComparison(universities) {
+    const comparisonResult = document.querySelector('.comparison-result');
+    comparisonResult.innerHTML = '';
+
+    universities.forEach(university => {
+        const div = document.createElement('div');
+        div.classList.add('university-comparison');
+        div.innerHTML = `
+            <h2>${university['Institution Name']}</h2>
+            <p><strong>Rank:</strong> ${university['2024 RANK']}</p>
+            <p><strong>Country:</strong> ${university.Country}</p>
+            <p class="show-more-details" onclick="toggleMoreDetails(this.parentElement)">Show more details</p>
+            <div class="university-details">
+                <p><strong>Rank 2023:</strong> ${university['2023 RANK']}</p>
+                <p><strong>Age:</strong> ${university.AGE}</p>
+                <p><strong>Academic Reputation Score:</strong> ${university['Academic Reputation Score']}</p>
+                <p><strong>Citations per Faculty Score:</strong> ${university['Citations per Faculty Score']}</p>
+                <p><strong>Employer Reputation Score:</strong> ${university['Employer Reputation Score']}</p>
+                <p><strong>FOCUS:</strong> ${university.FOCUS}</p>
+                <p><strong>Faculty Student Score:</strong> ${university['Faculty Student Score']}</p>
+                <p><strong>International Faculty Score:</strong> ${university['International Faculty Score']}</p>
+                <p><strong>International Research Network Score:</strong> ${university['International Research Network Score']}</p>
+                <p><strong>International Students Score:</strong> ${university['International Students Score']}</p>
+                <p><strong>Overall Score:</strong> ${university['Overall Score']}</p>
+                <p><strong>RES:</strong> ${university.RES}</p>
+                <p><strong>SIZE:</strong> ${university.SIZE}</p>
+                <p><strong>Sustainability Score:</strong> ${university['Sustainability Score']}</p>
+            </div>
+            <hr>
+        `;
+        comparisonResult.appendChild(div);
+    });
+}
+
+// Call the function to populate country filter options when the page loads
+window.onload = async function() {
+    await populateCountryFilterOptions();
+    await populateUniversitySelection(); 
+};
 

@@ -228,7 +228,7 @@ a.btn-main:hover {
 
 /* Style for "show more details" link */
 .show-more-details {
-    color: blue; /* Change color as desired */
+    color: blue !important;
     cursor: pointer;
 }
 
@@ -237,7 +237,107 @@ a.btn-main:hover {
     display: none;
 }
 
-
 .content-wrapper {
     padding-left: 270px; /* Same as the width of the filters + margin */
+}
+
+/* Styles for comparission page*/
+.comparison-result {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px; 
+    text-align: left; 
+}
+
+.university-comparison {
+    flex: 1; 
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 20px;
+    border-radius: 4px;
+    margin-bottom: 20px; 
+    text-align: left; 
+}
+
+
+.university-comparison h2 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.university-comparison p {
+    margin-bottom: 10px; 
+    line-height: 1.4; 
+    text-align: left; 
+}
+
+
+@media (max-width: 1024px) {
+    .comparison-result {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .comparison-result {
+        padding: 0 10px; 
+    }
+
+    .university-comparison {
+        width: 100%; 
+    }
+}
+.input-row {
+    display: flex;
+    align-items: center; 
+    gap: 10px; 
+}
+.input-row {
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+}
+
+#university-input {
+    width: 300px; 
+    margin: 2;
+    padding: 0.5em; 
+}
+
+.selected-universities div {
+    margin-bottom: 10px; 
+}
+
+.selected-universities button {
+    margin-left: 5px; 
+}
+
+.btn-main {
+    font-size: 0.7em; 
+    line-height: 1; 
+    height: 40px; 
+    padding: 10px 20px;
+    margin-bottom: 15px; 
+}
+.comparison-result p {
+    color: #666; 
+    font-style: italic;
+    padding: 2px;
+    text-align: left;
+
+}
+
+.delete-btn {
+    padding: 5px 10px;
+    margin-left: 10px; 
+    background-color: #ff4d4d; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background-color: #ff3333; 
 }
