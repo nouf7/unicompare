@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Compare Universities - UniCompare</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="compare.html" class="active">Compare</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="contact-us.html">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <h1>Compare Universities</h1>
+
+            <div class="selection-area">
+                <label for="university-input">University Name</label>
+                    <input type="text" id="university-input" placeholder="Enter full university name">
+                    <button type="button" onclick="addUniversity()" class="btn-main">Add for Comparison</button>
+            </div>
+            <div class="selected-universities">
+                <!-- Selected universities will be displayed here -->
+            </div>
+            <button type="button" onclick="compareUniversities()" class="btn-main">Compare</button>
+            
+            </div>
+
+            <div class="comparison-result">
+                <!-- Comparison details will be displayed here -->
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
