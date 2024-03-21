@@ -108,3 +108,80 @@ function displayUniversities(universities) {
 window.onload = async function() {
     await populateCountryFilterOptions();
 };
+
+// Function to handle form submission for university search
+document.getElementById('search-form').addEventListener('submit', async function(event) {
+    event.preventDefault(); // Prevent the default form submission behavior
+
+    // Get the typed university name from the input field
+    const universityName = document.getElementById('university-name').value.trim();
+
+    // Fetch university information based on the typed name
+    const universityInfo = await fetchUniversityInfo(universityName);
+
+    // Display the university information on the page
+    displayUniversity(universityInfo);
+});
+
+// Function to fetch university information based on the name
+async function fetchUniversityInfo(universityName) {
+    try {
+        // Fetch data from both databases concurrently
+        const [response1, response2] = await Promise.all([
+            fetch(db1URL),
+            fetch(db2URL)
+        ]);
+
+        const data1 = await response1.json();
+        const data2 = await response2.json();
+
+        // Combine data from both databases into one array
+        const universities1 = Object.values(data1);
+        const universities2 = Object.values(data2);
+        const universities = [...universities1, ...universities2];
+
+        // Find the university by name
+        const foundUniversity = universities.find(university => university['Institution Name'].toLowerCase() === universityName.toLowerCase());
+
+        return foundUniversity || null; // Return the found university or null if not found
+    } catch (error) {
+        console.error('Error fetching university information:', error);
+        throw error;
+    }
+}
+
+// Function to display a single university
+function displayUniversity(university) {
+    const universitiesContainer = document.querySelector('.universities');
+    universitiesContainer.innerHTML = '';
+
+    if (university) {
+        const universityElement = document.createElement('div');
+        universityElement.classList.add('university');
+        if (university) {
+            const universityElement = document.createElement('div');
+            universityElement.classList.add('university');
+            universityElement.innerHTML = `
+                <h2>${university['Institution Name']}</h2>
+                <p><strong>Rank:</strong> ${university['2024 RANK']}</p>
+                <p><strong>Country:</strong> ${university.Country}</p>
+                <p><strong>Age:</strong> ${university.AGE}</p>
+                <p><strong>Academic Reputation Score:</strong> ${university['Academic Reputation Score']}</p>
+                <p><strong>Citations per Faculty Score:</strong> ${university['Citations per Faculty Score']}</p>
+                <p><strong>Employer Reputation Score:</strong> ${university['Employer Reputation Score']}</p>
+                <p><strong>Faculty Student Score:</strong> ${university['Faculty Student Score']}</p>
+                <p><strong>International Faculty Score:</strong> ${university['International Faculty Score']}</p>
+                <p><strong>International Research Network Score:</strong> ${university['International Research Network Score']}</p>
+                <p><strong>International Students Score:</strong> ${university['International Students Score']}</p>
+                <p><strong>Overall Score:</strong> ${university['Overall Score']}</p>
+                <p><strong>Sustainability Score:</strong> ${university['Sustainability Score']}</p>
+                <hr>
+            `;
+            universitiesContainer.appendChild(universityElement);
+        } else {
+            const noResultMessage = document.createElement('p');
+            noResultMessage.textContent = 'No information found for the specified university.';
+            universitiesContainer.appendChild(noResultMessage);
+        }
+    }
+}

@@ -88,6 +88,20 @@ form textarea {
 }
 
 /* Button styling */
+button.btn-search,
+a.btn-search {
+    display: block;
+    width: auto;
+    padding: 5px 10px;
+    background-color: #a7d7c5; /* Pastel green color */
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.9em;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px; /* Space above the button */
+}
 button.btn-main,
 a.btn-main {
     display: block;

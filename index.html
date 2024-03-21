@@ -20,7 +20,11 @@
                 </ul>
             </nav>
             <div class="search">
-                <input type="text" placeholder="Search">
+                <form id="search-form">
+                    <input type="text" id="university-name" name="university-name" required>
+                    <button type="submit" class="btn-search">Search</button>
+                </form>
+                <div class="university-info" id="university-info">
             </div>
         </header>
         <main>
@@ -29,10 +33,11 @@
                 <p>Discover and compare university rankings with ease and find your perfect academic fit.</p>
            
             </div>
+            <div class="universities">
             <div class="image-container">
                 <img src="img1.png" alt="Explore Universities">
                 <a href="universities.html" class="btn-main">Start Exploring</a>
-
+            </div>
             </div>
         </main>
     </div>
