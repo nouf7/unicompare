@@ -62,7 +62,6 @@ async function fetchUniversities() {
 }
 
 // Function to filter universities based on selected criteria
-// Function to filter universities based on selected criteria
 async function applyFilters() {
     const selectedAge = document.getElementById('age-filter').value;
     const selectedCountry = document.getElementById('country-filter').value;
