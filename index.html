@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Add this script tag to link your JavaScript file -->
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    
     <title>Welcome to UniCompare 2024</title>
 </head>
 <body>
@@ -15,24 +12,28 @@
             <nav>
                 <ul>
                     <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="compare.html">Compare</a></li>
                     <li><a href="about-us.html">About Us</a></li>
                     <li><a href="contact-us.html">Contact</a></li>
                 </ul>
             </nav>
-            <div class="search">
-                <input type="text" placeholder="Search">
-            </div>
+            <form id="search-form">
+                <div class="search">
+                    <input type="text" id="university-name" name="university-name" required>
+                    <button type="button" id="btn-search" class="btn-search">Search</button>
+                </div>
+            </form>
         </header>
         <main>
             <div class="content">
                 <h1><strong>UniCompare</strong> 2024</h1>
                 <p>Discover and compare university rankings with ease and find your perfect academic fit.</p>
-           
             </div>
+            <div class="universities"></div>
+
             <div class="image-container">
                 <img src="img1.png" alt="Explore Universities">
                 <a href="universities.html" class="btn-main">Start Exploring</a>
-
             </div>
         </main>
     </div>
