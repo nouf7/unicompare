@@ -108,6 +108,56 @@ a.btn-main:hover {
     background-color: #95c0a9;
 }
 
+/* Style the search button */
+.search {
+    display: inline-block;
+}
+
+.btn-search {
+    display: inline-block;
+    vertical-align: top; /* Align the button with the top of the input */
+    margin-left: 3px; /* Adjust the margin between the input and button */
+    padding: 8px 10px;
+    background-color: #a7d7c5; /* Same color as navigation links */
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    height: 40px; /* Set the same height as the input */
+    flex-shrink: 0; /* Prevent the button from shrinking */
+    margin-top: -16px; /* Adjust the top margin to move the button higher */
+
+
+}
+
+.btn-search:hover {
+    background-color: #95c0a9; /* Darker shade for hover effect */
+}
+
+form#search-form {
+    margin-top: 30px; /* Increase or decrease as needed */
+}
+
+/* Apply flexbox layout to the search container */
+.search {
+    display: flex;
+    align-items: center; /* Align items vertically */
+}
+
+#university-name {
+    margin-right: 10px;
+    height: 40px; /* Set the same height as the button */
+}
+
+/* Optionally, adjust the alignment and size of the button */
+.btn-search {
+    flex-shrink: 0; /* Prevent the button from shrinking */
+}
+
 /* Style adjustments for image container */
 .image-container {
     text-align: center;

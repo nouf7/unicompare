@@ -314,7 +314,7 @@ window.onload = async function() {
 // Function to handle search based on university name
 function searchUniversity() {
     // Get the typed university name from the input field
-    const universityName = document.getElementById('university-name').value.trim();
+    const universityName = document.getElementById('university-name').value.trim().toLowerCase();
 
     // Check if the input is empty
     if (universityName === "") {
