@@ -265,6 +265,7 @@ form#search-form {
 
 /* Position filters box on the left */
 .filters {
+    font-size: 0.8em;
     margin-bottom: 20px; 
 }
 

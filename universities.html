@@ -67,6 +67,70 @@
                         <option value="FC">FC</option>
                         <option value="CO">CO</option>
                     </select>
+                    <label for="rep-score-range">Academic Reputation Score:</label>
+                    <div class="rep-score-range" id="rep-score-range">
+                        <input type="number" id="min-rep-score" name="min-rep-score" placeholder="Min" min="0" max="100">
+                        <span> - </span>
+                        <input type="number" id="max-rep-score" name="max-rep-score" placeholder="Max" min="0" max="100">
+                    </div>
+
+                    <label for="cit-score-range">Citations per Faculty Score:</label>
+                    <div class="cit-score-range" id="cit-score-range">
+                        <input type="number" id="min-cit-score" name="min-cit-score" placeholder="Min" min="0" max="100">
+                        <span> - </span>
+                        <input type="number" id="max-cit-score" name="max-cit-score" placeholder="Max" min="0" max="100">
+                    </div>
+
+                    <div class="score-range" id="employer-rep-score-range">
+                        <label>Employer Reputation Score:</label>
+                        <input type="number" id="min-employer-rep-score" placeholder="Min" min="0" max="100">
+                        <span> - </span>
+                        <input type="number" id="max-employer-rep-score" placeholder="Max" min="0" max="100">
+                    </div>
+                    
+                    <div class="score-range" id="faculty-student-score-range">
+                        <label>Faculty Student Score:</label>
+                        <input type="number" id="min-faculty-student-score" placeholder="Min" min="0" max="100">
+                        <span> - </span>
+                        <input type="number" id="max-faculty-student-score" placeholder="Max" min="0" max="100">
+                    </div>
+                    
+                    <div class="score-range" id="int-faculty-score-range">
+                        <label>International Faculty Score:</label>
+                        <input type="number" id="min-int-faculty-score" placeholder="Min" min="0" max="100">
+                        <span> - </span>
+                        <input type="number" id="max-int-faculty-score" placeholder="Max" min="0" max="100">
+                    </div>
+                    
+                    <div class="score-range" id="int-research-net-score-range">
+                        <label>International Research Network Score:</label>
+                        <input type="number" id="min-int-research-net-score" placeholder="Min" min="0" max="100">
+                        <span> - </span>
+                        <input type="number" id="max-int-research-net-score" placeholder="Max" min="0" max="100">
+                    </div>
+                    <div class="score-range" id="int-students-score-range">
+                        <label>International Students Score:</label>
+                        <input type="number" id="min-int-students-score" placeholder="Min" min="0" max="100">
+                        <span> - </span>
+                        <input type="number" id="max-int-students-score" placeholder="Max" min="0" max="100">
+                    </div>
+                    
+                    <div class="score-range" id="overall-score-range">
+                        <label>Overall Score:</label>
+                        <input type="number" id="min-overall-score" placeholder="Min" min="0" max="100">
+                        <span> - </span>
+                        <input type="number" id="max-overall-score" placeholder="Max" min="0" max="100">
+                    </div>
+                    
+                    <div class="score-range" id="sustainability-score-range">
+                        <label>Sustainability Score:</label>
+                        <input type="number" id="min-sustainability-score" placeholder="Min" min="0" max="100">
+                        <span> - </span>
+                        <input type="number" id="max-sustainability-score" placeholder="Max" min="0" max="100">
+                    </div>
+                    
+                    
+
                     <button onclick="applyFilters()">Apply Filters</button>
                 </div>
             </div>

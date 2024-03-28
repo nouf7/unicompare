@@ -68,6 +68,16 @@ async function applyFilters() {
     const selectedRes = document.getElementById('res-filter').value;
     const selectedSize = document.getElementById('size-filter').value;
     const selectedFocus = document.getElementById('focus-filter').value;
+    const minRepScore = document.getElementById('min-rep-score').value;
+    const maxRepScore = document.getElementById('max-rep-score').value;
+    const minCitScore = document.getElementById('min-cit-score').value;
+    const maxCitScore = document.getElementById('max-cit-score').value;
+    const minEmployerRepScore = document.getElementById('min-employer-rep-score').value;
+    const maxEmployerRepScore = document.getElementById('max-employer-rep-score').value;
+    const minFacultyStudentScore = document.getElementById('min-faculty-student-score').value;
+    const maxFacultyStudentScore = document.getElementById('max-faculty-student-score').value;
+
+    
 
     const universities = await fetchUniversities();
 
@@ -77,8 +87,54 @@ async function applyFilters() {
         const resCheck = selectedRes === 'All' || university.RES === selectedRes;
         const sizeCheck = selectedSize === 'All' || university.SIZE === selectedSize;
         const focusCheck = selectedFocus === 'All' || university.FOCUS === selectedFocus;
+        const minIntFacultyScore = document.getElementById('min-int-faculty-score').value;
+        const maxIntFacultyScore = document.getElementById('max-int-faculty-score').value;
+        const minIntResearchNetScore = document.getElementById('min-int-research-net-score').value;
+        const maxIntResearchNetScore = document.getElementById('max-int-research-net-score').value;
+        const minIntStudentsScore = document.getElementById('min-int-students-score').value;
+        const maxIntStudentsScore = document.getElementById('max-int-students-score').value;
+        const minOverallScore = document.getElementById('min-overall-score').value;
+        const maxOverallScore = document.getElementById('max-overall-score').value;
+        const minSustainabilityScore = document.getElementById('min-sustainability-score').value;
+        const maxSustainabilityScore = document.getElementById('max-sustainability-score').value;
+    
         
-        return ageCheck && countryCheck && resCheck && sizeCheck && focusCheck;
+        const repScoreCheck = (!minRepScore || university['Academic Reputation Score'] >= minRepScore) &&
+        (!maxRepScore || university['Academic Reputation Score'] <= maxRepScore);
+
+        const citScoreCheck = (!minCitScore || university['Citations per Faculty Score'] >= minCitScore) &&
+        (!maxCitScore || university['Citations per Faculty Score'] <= maxCitScore);
+
+        const employerRepScoreCheck = (!minEmployerRepScore || university['Employer Reputation Score'] >= minEmployerRepScore) &&
+                                      (!maxEmployerRepScore || university['Employer Reputation Score'] <= maxEmployerRepScore);
+        
+        // Check for Faculty Student Score within range
+        const facultyStudentScoreCheck = (!minFacultyStudentScore || university['Faculty Student Score'] >= minFacultyStudentScore) &&
+                                         (!maxFacultyStudentScore || university['Faculty Student Score'] <= maxFacultyStudentScore);
+
+                                         const intFacultyScoreCheck = (!minIntFacultyScore || university['International Faculty Score'] >= minIntFacultyScore) &&
+                                         (!maxIntFacultyScore || university['International Faculty Score'] <= maxIntFacultyScore);
+            
+            // Check for International Research Network Score within range
+            const intResearchNetScoreCheck = (!minIntResearchNetScore || university['International Research Network Score'] >= minIntResearchNetScore) &&
+                                             (!maxIntResearchNetScore || university['International Research Network Score'] <= maxIntResearchNetScore);
+    
+            // Return true if all checks pass
+            const intStudentsScoreCheck = (!minIntStudentsScore || university['International Students Score'] >= minIntStudentsScore) &&
+                                      (!maxIntStudentsScore || university['International Students Score'] <= maxIntStudentsScore);
+        const overallScoreCheck = (!minOverallScore || university['Overall Score'] >= minOverallScore) &&
+                                  (!maxOverallScore || university['Overall Score'] <= maxOverallScore);
+        const sustainabilityScoreCheck = (!minSustainabilityScore || university['Sustainability Score'] >= minSustainabilityScore) &&
+                                         (!maxSustainabilityScore || university['Sustainability Score'] <= maxSustainabilityScore);
+
+        // Return true if all checks pass
+        return ageCheck && countryCheck && resCheck && sizeCheck && focusCheck &&
+               repScoreCheck && citScoreCheck && employerRepScoreCheck &&
+               facultyStudentScoreCheck && intFacultyScoreCheck && intResearchNetScoreCheck &&
+               intStudentsScoreCheck && overallScoreCheck && sustainabilityScoreCheck;
+  
+       
+     
     });
 
     console.log('Filtered Universities:', filteredUniversities); // Log the filtered universities
