@@ -246,28 +246,78 @@ async function populateUniversitySelection() {
 }
 
 let universitiesToCompare = [];
-function addUniversity() {
-    const inputElement = document.getElementById('university-input');
-    // Handle case-insensitive
-    const universityName = inputElement.value.trim().toLowerCase();
 
-    // Check if the input is empty
+async function addUniversity() {
+    const inputElement = document.getElementById('university-input');
+    const universityName = inputElement.value.trim().toLowerCase(); 
+
+    // check if the user enters univ. name
     if (universityName === "") {
         alert("Please enter a university name.");
         return;
     }
-    // Limit to three universities
+
+    // check the number of universities to compare
     if (universitiesToCompare.length >= 3) {
         alert('You can compare up to 3 universities at a time.');
         return;
     }
+
+    try {
+        const allUniversities = await fetchUniversities();
+        // check for partial universities name
+        const foundUniversities = allUniversities.filter(university =>
+            university['Institution Name'].toLowerCase().includes(universityName)
+        );
+
+        if (foundUniversities.length > 0) {
+            // case1: only one univerity is found
+            if (foundUniversities.length === 1) {
+                // Check if this university is already added
+                if (!universitiesToCompare.includes(foundUniversities[0]['Institution Name'])) {
+                    processUniversitySelection(foundUniversities[0]['Institution Name']);
+                } else {
+                    alert('This university has already been added.');
+                }
+            // case2: multiple univerisites found
+            } else {
+                let message = "Multiple universities found. Please select one by typing the number:\n";
+                foundUniversities.forEach((uni, index) => {
+                    message += `${index + 1}. ${uni['Institution Name']}\n`;
+                });
+                const selection = prompt(message);
+                const selectedIndex = parseInt(selection, 10) - 1;
+
+                if (!isNaN(selectedIndex) && selectedIndex >= 0 && selectedIndex < foundUniversities.length) {
+                    // check if the university is already added
+                    if (!universitiesToCompare.includes(foundUniversities[selectedIndex]['Institution Name'])) {
+                        processUniversitySelection(foundUniversities[selectedIndex]['Institution Name']);
+                    } else {
+                        alert('This university has already been added.');
+                    }
+                } else {
+                    alert("Invalid selection.");
+                }
+            }
+        } else {
+            alert("No matching universities found.");
+        }
+    } catch (error) {
+        console.error('Error while trying to add a university:', error);
+        alert("An error occurred. Please try again.");
+    }
+}
+
+function processUniversitySelection(universityName) {
+    // clear the input text box
+    document.getElementById('university-input').value = ''; 
+
     // Check if the university is already added
-    if (!universitiesToCompare.map(name => name.toLowerCase()).includes(universityName)) {
-        universitiesToCompare.push(universityName); 
+    if (!universitiesToCompare.includes(universityName.toLowerCase())) {
+        universitiesToCompare.push(universityName);
         updateSelectedUniversities();
-        inputElement.value = ''; 
     } else {
-        alert('This university has already been added.');
+        alert("This university has already been added for comparison.");
     }
 }
 
@@ -311,12 +361,13 @@ async function compareUniversities() {
     // Check if there are universities to compare
     if (universitiesToCompare.length === 0) {
         alert('Please add at least one university to compare.');
-        return; 
+        return;
     }
 
     const allUniversities = await fetchUniversities();
+    // Transform the fetched university names to lowercase for comparison
     const selectedUniversitiesData = allUniversities.filter(university =>
-        universitiesToCompare.includes(university['Institution Name'].toLowerCase())
+        universitiesToCompare.map(name => name.toLowerCase()).includes(university['Institution Name'].toLowerCase())
     );
 
     if (selectedUniversitiesData.length > 0) {
@@ -360,6 +411,7 @@ function displayComparison(universities) {
         comparisonResult.appendChild(div);
     });
 }
+
 
 // Call the function to populate country filter options when the page loads
 window.onload = async function() {
