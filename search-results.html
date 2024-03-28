@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Search Results - UniCompare</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="compare.html">Compare</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="contact-us.html">Contact</a></li>
+                </ul>
+            </nav>
+            <form id="search-form">
+                <div class="search">
+                    <input type="text" id="university-name" name="university-name" required>
+                    <button type="button" id="btn-search" class="btn-search">Search</button>
+                </div>
+            </form>
+        </header>
+
+    <div class="content">
+
+    </div>
+
+    <div id="search-results" class="universities">
+        <!-- Search results will be displayed here -->
+    </div>
+
+    <script src="script.js"></script>
+</div>
+
+    <script>
+        // Function to parse URL parameters
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            const results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        // Get the search query from the URL parameter
+        const searchQuery = getUrlParameter('q');
+
+        // Display the search query on the page
+        const searchResultsContainer = document.getElementById('search-results');
+        searchResultsContainer.innerHTML = `<p>Search results for: <strong>${searchQuery}</strong></p>`;
+
+        // Function to fetch and display universities based on the search query
+        async function displaySearchResults() {
+            try {
+                // Fetch university information based on the search query
+                const universities = await fetchUniversityInfo(searchQuery);
+
+                if (universities && universities.length > 0) {
+                    // Display the universities on the page
+                    universities.forEach(university => {
+                        const universityElement = document.createElement('div');
+                        universityElement.innerHTML = `
+                            <h2>${university['Institution Name']}</h2>
+                            <p><strong>Rank:</strong> ${university['2024 RANK']}</p>
+                            <p><strong>Country:</strong> ${university.Country}</p>
+                            <p><strong>Overall Score:</strong> ${university['Overall Score']}</p>
+                            <p><strong>Age:</strong> ${university.AGE}</p>
+                            <p><strong>Academic Reputation Score:</strong> ${university['Academic Reputation Score']}</p>
+                            <p><strong>Citations per Faculty Score:</strong> ${university['Citations per Faculty Score']}</p>
+                            <p><strong>Employer Reputation Score:</strong> ${university['Employer Reputation Score']}</p>
+                            <p><strong>Faculty Student Score:</strong> ${university['Faculty Student Score']}</p>
+                            <p><strong>International Faculty Score:</strong> ${university['International Faculty Score']}</p>
+                            <p><strong>International Research Network Score:</strong> ${university['International Research Network Score']}</p>
+                            <p><strong>International Students Score:</strong> ${university['International Students Score']}</p>
+                            <p><strong>Sustainability Score:</strong> ${university['Sustainability Score']}</p>
+                            <hr>
+                            `;
+                        searchResultsContainer.appendChild(universityElement);
+                    });
+                } else {
+                    // Display a message if no universities are found
+                    searchResultsContainer.innerHTML += '<p>No universities found.</p>';
+                }
+            } catch (error) {
+                console.error('Error fetching search results:', error);
+                searchResultsContainer.innerHTML += '<p>An error occurred while fetching search results.</p>';
+            }
+        }
+
+        // Call the function to display search results when the page loads
+        displaySearchResults();
+
+    </script>
+</body>
+</html>

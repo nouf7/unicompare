@@ -341,3 +341,42 @@ a.btn-main:hover {
 .delete-btn:hover {
     background-color: #ff3333; 
 }
+
+
+/* Styles for universities */
+.universities {
+    margin-left: 250px;
+}
+
+.university {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    text-align: left; /* Align text to the left */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+}
+
+.university h2 {
+    margin-bottom: 10px;
+    font-size: 1.5em;
+    color: #333; /* Set text color */
+}
+
+.university p {
+    font-size: 1em;
+    margin-bottom: 10px;
+    line-height: 1.4;
+    color: #666; /* Set text color */
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    .universities {
+        margin-left: 0; /* Remove left margin on smaller screens */
+    }
+}
+
+.search-results {
+    display: none;
+}

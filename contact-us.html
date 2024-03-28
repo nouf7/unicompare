@@ -17,6 +17,12 @@
                     <li><a href="contact-us.html" class="active">Contact</a></li>
                 </ul>
             </nav>
+            <form id="search-form">
+                <div class="search">
+                    <input type="text" id="university-name" name="university-name" required>
+                    <button type="button" id="btn-search" class="btn-search">Search</button>
+                </div>
+            </form>
         </header>
         <main>
             <h1>Contact Us</h1>
@@ -25,6 +31,8 @@
                 <li>Email: contact@unicompare.com</li>
                 <li>Phone: +1 (555) 123-4567</li>
             </ul>
+            <div class="universities"></div>
+
             <form>
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
@@ -36,8 +44,12 @@
                 <textarea id="message" name="message" required></textarea>
                 
                 <button type="submit" class="btn-main">Send Message</button>
+                
             </form>
+
         </main>
     </div>
+    <script src="script.js"></script>
+
 </body>
 </html>

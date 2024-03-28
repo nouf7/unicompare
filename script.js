@@ -312,7 +312,7 @@ window.onload = async function() {
 };
 
 // Function to handle search based on university name
-async function searchUniversity() {
+function searchUniversity() {
     // Get the typed university name from the input field
     const universityName = document.getElementById('university-name').value.trim();
 
@@ -322,16 +322,11 @@ async function searchUniversity() {
         return;
     }
 
-    // Fetch university information based on the typed name
-    const universityInfo = await fetchUniversityInfo(universityName);
-
-    if (universityInfo) {
-        // Display the university information on the page
-        displayUniversity(universityInfo);
-    } else {
-        alert("No universities found with the entered name.");
-    }
+    // Redirect to search-results.html with the search query
+    window.location.href = `search-results.html?q=${encodeURIComponent(universityName)}`;
 }
+
+
 
 // Function to fetch university information based on the partial name
 async function fetchUniversityInfo(universityName) {
@@ -396,3 +391,4 @@ function displayUniversity(university) {
 }
 // Call the searchUniversity function when the search button is clicked
 document.getElementById('btn-search').addEventListener('click', searchUniversity);
+
