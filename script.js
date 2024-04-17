@@ -1,6 +1,7 @@
 // URLs for your Firebase Realtime Databases
-const db1URL = 'https://unicompare-1-default-rtdb.firebaseio.com/.json';
-const db2URL = 'https://unicompare-2-default-rtdb.firebaseio.com/.json';
+const db1URL = 'https://unicompare-1-default-rtdb.firebaseio.com/.json?orderBy="2024 RANK"&print=pretty'
+const db2URL = 'https://unicompare-2-default-rtdb.firebaseio.com/.json?orderBy="2024 RANK"&print=pretty'
+;
 
 // Custom sorting function to handle different formats of '2024 RANK'
 function customSort(a, b) {
@@ -31,6 +32,7 @@ function parseRank(rank) {
     }
 }
 
+
 // Function to fetch universities from both databases
 async function fetchUniversities() {
     try {
@@ -60,6 +62,7 @@ async function fetchUniversities() {
         throw error;
     }
 }
+
 
 // Function to filter universities based on selected criteria
 async function applyFilters() {
