@@ -1,12 +1,12 @@
 # UniCompare README
 
 ## Overview
-Welcome to UniCompare, your ultimate destination for comparing universities worldwide! UniCompare simplifies the process of selecting the right university by providing comprehensive insights into various institutions' rankings and attributes.
+Welcome to UniCompare, the place for comparing universities worldwide! UniCompare simplifies the process of selecting the right university by providing comprehensive insights into various institutions' rankings and attributes.
 
 ## Files
-- **JavaScript**: Contains the logic and functionality for search, comparison, and filtering of universities.
-- **CSS File**: Stylesheet for designing the user interface, ensuring a visually appealing layout.
-- **HTML Files**: Six HTML files constitute the website:
+- **JavaScript**: script.js contains the logic and functionality for search, comparison, and filtering of universities.
+- **CSS File**: style.css is for designing the user interface, ensuring a visually appealing layout.
+- **HTML Files**: Six different HTML files make up the website:
   1. **index.html**: Homepage of UniCompare.
   2. **compare.html**: Page for comparing multiple universities.
   3. **about-us.html**: Information about the UniCompare team.
@@ -16,6 +16,6 @@ Welcome to UniCompare, your ultimate destination for comparing universities worl
 
 ## Usage
 1. Clone the repository to your local machine.
-2. Open any HTML file in your preferred web browser to explore UniCompare.
+2. Open the index HTML file in your preferred web browser to explore UniCompare.
 3. Navigate through the different pages to compare universities, learn more about them, or get in touch with the UniCompare team.
 
