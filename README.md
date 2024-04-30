@@ -13,6 +13,7 @@ Welcome to UniCompare, the place for comparing universities worldwide! UniCompar
   4. **contact-us.html**: Contact information and form for reaching out to UniCompare.
   5. **search-results.html**: Page displaying search results, accessed from any page using the search feature.
   6. **universities.html**: Detailed information about individual universities.
+- **Data Folder**: Data folder contains our JSON file with the data and our Python script that uploads the data into Firebase.
 
 ## Usage
 1. Clone the repository to your local machine.
