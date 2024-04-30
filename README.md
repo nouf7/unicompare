@@ -9,9 +9,9 @@ Welcome to UniCompare, your ultimate destination for comparing universities worl
 - **HTML Files**: Six HTML files constitute the website:
   1. **index.html**: Homepage of UniCompare.
   2. **compare.html**: Page for comparing multiple universities.
-  3. **about_us.html**: Information about the UniCompare team.
-  4. **contact_us.html**: Contact information and form for reaching out to UniCompare.
-  5. **search_results.html**: Page displaying search results, accessed from any page using the search feature.
+  3. **about-us.html**: Information about the UniCompare team.
+  4. **contact-us.html**: Contact information and form for reaching out to UniCompare.
+  5. **search-results.html**: Page displaying search results, accessed from any page using the search feature.
   6. **universities.html**: Detailed information about individual universities.
 
 ## Usage
